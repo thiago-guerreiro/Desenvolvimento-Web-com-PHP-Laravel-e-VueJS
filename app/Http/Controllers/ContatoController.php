@@ -9,6 +9,7 @@ class ContatoController extends Controller
 {
     public function contato(Request $request) {
 
+        /*
         if(!(empty($request->all()))) {
             $contato = new SiteContato();
             $contato->nome = $request->input('nome');
@@ -19,6 +20,7 @@ class ContatoController extends Controller
 
             $contato->save();
         }
+        */
 
         /*
         if(!(empty($request->all()))) {
@@ -28,5 +30,17 @@ class ContatoController extends Controller
         */
 
         return view('site.contato', ['titulo' => 'Contato (teste)']);
+    }
+
+    public function salvar(Request $request) {
+
+        $request->validade([
+            'nome' => 'required|min:3|max:40',
+            'telefone' => 'required',
+            'email' => 'required',
+            'motivo_contato' => 'required',
+            'mensagem' => 'required'
+        ]);
+        //SiteContato::create($request->all());
     }
 }
